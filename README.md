@@ -1,4 +1,4 @@
-#SASS工具包
+# SCSS工具包
 
 ### CSS基礎分檔
 -  normalize.css
