@@ -1,0 +1,55 @@
+// basic header set
+@for $i from 1 through length($fzLevel) {
+    .fz-#{$i}{
+        font-size: getFzLevel($i);
+    }    
+}
+
+@each $k, $v in $breakpoints {
+    @if $startFrom == 'pc'{
+        @include apply-under($k){
+            @for $i from 1 through length($fzLevel) {
+                .#{$k}\:fz-#{$i}{
+                    font-size: getFzLevel($i);
+                }    
+            }
+        }
+    }
+    @else if $startFrom == 'mobile'{
+        @include apply-over($k){
+            @for $i from 1 through length($fzLevel) {
+                .#{$k}\:fz-#{$i}{
+                    font-size: getFzLevel($i);
+                }    
+            }
+        }
+    }
+    
+    
+}
+
+
+//text
+.fw-bold{
+    font-weight: 700;
+}
+
+.fw-normal{
+    font-weight: 400;
+}
+
+.fw-light{
+    font-weight: 300;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.text-center{
+    text-align: center;
+}

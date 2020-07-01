@@ -1,0 +1,44 @@
+// var
+$startFrom: 'pc' ; //pc or mobile
+$fzBasis: 18px;
+$fzLevel:.9rem ,1rem, 1.1rem, 1.25rem, 1.5rem, 2rem, 2.5rem, 3rem;
+$directionList: (t : top, r : right, b : bottom, l : left);
+$gutter: 10px;
+$containerWidth:(
+    lg:960px,
+    xl:1440px
+);
+
+$breakpoints:(
+    xl:map-get($map: $containerWidth, $key: xl),
+    lg:map-get($map: $containerWidth, $key: lg),
+    md:768px,
+    sm: 520px,
+);
+
+@if $startFrom == 'mobile'{
+    $breakpoints:(
+        sm: 520px,
+        md:769px,
+        lg:map-get($map: $containerWidth, $key: lg),
+        xl:map-get($map: $containerWidth, $key: xl)
+    );
+}
+
+//grid
+$grid:(
+    col:24,
+    gutter: $gutter/2
+);
+$lineHeight: 1.5;
+$colors:(
+    primary: #440062,
+    accent: rgb(255, 174, 0),
+    default: #111111,
+    secondary: #e7e7e7,
+    secondary-dark:#404041,
+    sub:#ffddcb,
+    light: #ffffff,
+    dark: #000000
+);
+$transTime: .5s;

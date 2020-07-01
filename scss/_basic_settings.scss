@@ -1,0 +1,29 @@
+//rem basis
+html{
+    font-size: $fzBasis;
+    line-height: $lineHeight;
+    @include apply-under(sm){
+        font-size: 16px;
+    }
+}
+
+.container{
+    width: 100%;
+    padding: 0 getGutter(2);
+    @include maxWidth(map-get($map: $containerWidth, $key: xl));
+    @include apply-under(xl){
+        @include maxWidth(map-get($map: $containerWidth, $key: lg))
+    }
+    // @if $startFrom == 'pc'{
+    //     @include maxWidth(map-get($map: $containerWidth, $key: xl));
+    //     @include apply-under(xl){
+    //         @include maxWidth(map-get($map: $containerWidth, $key: lg))
+    //     }
+    // }
+    // @else if $startFrom == 'mobile'{
+    //     @include maxWidth(map-get($map: $containerWidth, $key: lg));
+    //     @include apply-over(xl){
+    //         @include maxWidth(map-get($map: $containerWidth, $key: xl))
+    //     }
+    // }
+}

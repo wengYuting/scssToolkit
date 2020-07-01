@@ -1,0 +1,242 @@
+//mixin
+@mixin beforeAfterBlock($w,$h, $display:block){
+    content: '';
+    display: $display;
+    width: $w;
+    height: $h;
+}
+
+
+// mediaQuery by breakpoint
+@mixin apply-under($k){
+    @if $k == sm{
+        @media (max-width:getBreakpoints(sm)){
+            @content;
+        };
+    }
+    @else if $k == md{
+        @media (max-width:getBreakpoints(md)){
+            @content;
+        };
+    }
+    @else if $k == lg{
+        @media (max-width:getBreakpoints(lg)){
+            @content;
+        };
+    }
+    @else if $k == xl{ 
+        @media (max-width:getBreakpoints(xl)){
+            @content;
+        };
+    }
+    @else{ //free width
+        @media (max-width:$k){
+            @content;
+        };
+    }
+}
+
+@mixin apply-over($k){
+    @if $k == sm{
+        @media (min-width:getBreakpoints(sm)){
+            @content;
+        };
+    }
+    @else if $k == md{
+        @media (min-width:getBreakpoints(md)){
+            @content;
+        };
+    }
+    @else if $k == lg{
+        @media (min-width:getBreakpoints(lg)){
+            @content;
+        };
+    }
+    @else if $k == xl{ 
+        @media (min-width:getBreakpoints(xl)){
+            @content;
+        };
+    }
+    @else{ //free width
+        @media (min-width:$k){
+            @content;
+        };
+    }
+}
+
+@mixin maxWidth($w, $ml:auto, $mr:auto){
+    max-width: $w;
+    margin-left: $ml;
+    margin-right: $mr;
+}
+
+@mixin mxAuto{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin flex0{
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+
+//fix rate box
+@mixin fixRateWrap($wPercent, $hPercent, $p:relative) {
+    width: $wPercent;
+    padding-bottom: $hPercent;
+    position: $p;
+}
+
+@mixin squareWrap( $wPercent , $p:relative){
+    @include fixRateWrap( $wPercent, $wPercent, $p);
+}
+
+//center center
+@mixin flexCenterCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin absoluteCenterCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin pAbsolute($top:0, $left:0){
+    position: absolute;
+    top: $top;
+    left: $left;
+}
+
+@mixin absoluteCenterY($left:auto){
+    position: absolute;
+    top: 50%;
+    left: $left;
+    transform: translateY(-50%);
+}
+
+@mixin absoluteCenterX($top:auto){
+    position: absolute;
+    top: $top;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin pFix($bottom:0, $right:0){
+    position: fixed;
+    bottom: $bottom;
+    right: $right;
+}
+
+@mixin tableCollapse {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+//bg
+@mixin fullBg($url){
+    background-image: url($url);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@mixin bgIcon($url, $size, $display:inline-block){
+    content: '';
+    display: $display;
+    @include squareWrap($size);
+    background-image: url($url);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+//border-radius
+@mixin brLeft($r){
+    border-top-left-radius: $r;
+    border-bottom-left-radius: $r;
+}
+
+@mixin brRight($r){
+    border-top-right-radius: $r;
+    border-bottom-right-radius: $r;
+}
+
+@mixin brTop($r){
+    border-top-left-radius: $r;
+    border-top-right-radius: $r;
+}
+
+@mixin brBottom($r){
+    border-bottom-left-radius: $r;
+    border-bottom-right-radius: $r;
+}
+
+//triangle
+@mixin arrow($direction, $width, $color){
+    height: 0;
+    width: 0;
+    border-width: $width;
+    border-style: solid;
+    border-color: transparent;
+    @if $direction == up {
+        border-bottom-color: $color;
+      } @else if $direction == right {
+        border-left-color: $color;
+      } @else if $direction == down {
+        border-top-color: $color;
+      } @else if $direction == left {
+        border-right-color: $color;
+      } @else {
+        @error "Unknown direction #{$direction}.";
+      }
+}
+
+
+//check
+@mixin checkMark($sort, $long, $c, $w){
+    width:$sort;
+    height:$long;
+    border-bottom: $w $c solid;
+    border-right: $w $c solid;
+    transform: rotate(45deg) translateX(-30%);
+    transform-origin:100% 100%;
+}
+
+//padding & margin
+@mixin py($n){
+    padding-top: getGutter($n);
+    padding-bottom: getGutter($n);
+}
+
+@mixin px($n){
+    padding-left: getGutter($n);
+    padding-right: getGutter($n);
+}
+
+@mixin my($n){
+    margin-top: getGutter($n);
+    margin-bottom: getGutter($n);
+}
+
+@mixin mx($n){
+    margin-left: getGutter($n);
+    margin-right: getGutter($n);
+}
+
+//grid
+@mixin gridSys($gridCol, $i, $gridGutter:map-get($grid, gutter)){
+    @include flex0;
+    @if $gridGutter == 0{
+        flex-basis: 100%/$gridCol*$i;
+    }@else{
+        flex-basis: calc(100%/#{$gridCol}*#{$i} - #{$gridGutter}*2);
+    }
+    margin-right: $gridGutter;
+    margin-left: $gridGutter;
+}
+
+
+

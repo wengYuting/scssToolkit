@@ -1,0 +1,43 @@
+@import "./component/navBar";
+@import "keyFrames";
+
+.logo{
+    @include arrow(right, 20px, getColor(accent));
+}
+
+.header-nav{
+    .nav-link{
+        @include py(1);
+        @include px(3);
+        color: getColor(primary);
+        border-bottom: 2px solid;
+        border-color: transparent;
+        display: block;
+        @extend %transTime;
+        &:hover{
+            color: getColor(accent);
+            border-color: getColor(accent);
+        }
+    }
+    @include apply-under(md){
+        .nav-list{
+            background-color: getColor(secondary);
+        }
+    }
+}
+
+.box{
+    background: lightseagreen;
+    height: 30px;
+    &:nth-child(2n){
+        background: lightcoral;
+    }
+}
+
+.grid-5 {
+    margin-left:-1%;
+    margin-right:-1%;
+    .box{
+        @include gridSys(5, 1, 1%)
+    }
+}

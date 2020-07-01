@@ -1,0 +1,61 @@
+@import "var";
+@import "func";
+@import "mixin";
+
+$gridCol: map-get($grid, col);
+$gridGutter: map-get($grid, gutter);
+
+.grid-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: $gridGutter;
+    margin-left: $gridGutter;
+    &.grid-full{
+        margin-right: 0;
+        margin-left: 0;
+    }
+    &.grid-100{
+        margin-right: - $gridGutter;
+        margin-left: - $gridGutter;
+    }
+
+}
+
+
+@for $i from 1 through $gridCol {
+    .col-#{$i}{
+        @include gridSys($gridCol, $i, $gridGutter);
+    }
+    .grid-wrapper.grid-full .col-#{$i}{
+        @include gridSys($gridCol, $i, 0);
+    }
+}
+
+@each $k, $v in $breakpoints {
+    // start from mobile: apply-over; start from pc: apply-under
+    @if $startFrom == 'pc'{
+        @include apply-under($k){
+            @for $i from 1 through $gridCol {
+                .#{$k}\:col-#{$i}{
+                    flex-basis: calc(100%/#{$gridCol}*#{$i} - #{$gridGutter}*2);
+                }
+                .grid-wrapper.grid-full .#{$k}\:col-#{$i}{
+                    flex-basis: 100%/$gridCol*$i;
+                }
+            }
+        }
+    }
+    @else if $startFrom == 'mobile'{
+        @include apply-over($k){
+            @for $i from 1 through $gridCol {
+                .#{$k}\:col-#{$i}{
+                    flex-basis: calc(100%/#{$gridCol}*#{$i} - #{$gridGutter}*2);
+                }
+                .grid-wrapper.grid-full .#{$k}\:col-#{$i}{
+                    flex-basis: 100%/$gridCol*$i;
+                }
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,19 @@
+.info-table{
+    @include tableCollapse;
+    th, td{
+        padding: getGutter(1) getGutter(3);
+    }
+    @include apply-under(600px){
+        display: block;
+        thead, tbody, tr, th, td{
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        thead{
+            opacity: 0;
+            position: absolute;
+            top:-9999px;
+        }
+    }
+}

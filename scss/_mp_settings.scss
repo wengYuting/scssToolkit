@@ -1,0 +1,172 @@
+@import "var";
+@import "func";
+@import "extend";
+@import "mixin";
+
+//margin and padding
+@for $i from 0 to 6 {
+    .m-#{$i}{
+        margin: $gutter * $i;
+    }
+
+    .my-#{$i}{
+        margin-top: $gutter * $i;
+        margin-bottom: $gutter * $i;
+    }
+
+    .mx-#{$i}{
+        margin-left: $gutter * $i;
+        margin-right: $gutter * $i;
+    }
+
+    .p-#{$i}{
+        padding: $gutter * $i;
+    }
+
+    .py-#{$i}{
+        padding-top: $gutter * $i;
+        padding-bottom: $gutter * $i;
+    }
+
+    .px-#{$i}{
+        padding-left: $gutter * $i;
+        padding-right: $gutter * $i;
+    }
+
+    @each $k, $v in $directionList {
+        .m#{$k}-#{$i}{
+            margin-#{$v}: $gutter*$i;
+        }
+
+        .p#{$k}-#{$i}{
+            padding-#{$v}: $gutter*$i;
+        }
+    }
+}
+
+.mx-auto{
+    @include mxAuto;
+}
+
+.mr-auto{
+    margin-right: auto;
+}
+
+.ml-auto{
+    margin-left: auto;
+}
+
+@each $k, $v in $breakpoints {
+    @if $startFrom == 'pc'{
+        @include apply-under($k){
+            @for $i from 0 to 6 {
+                .#{$k}\:m-#{$i}{
+                    margin: $gutter * $i;
+                }
+            
+                .#{$k}\:my-#{$i}{
+                    margin-top: $gutter * $i;
+                    margin-bottom: $gutter * $i;
+                }
+            
+                .#{$k}\:mx-#{$i}{
+                    margin-left: $gutter * $i;
+                    margin-right: $gutter * $i;
+                }
+            
+                .#{$k}\:p-#{$i}{
+                    padding: $gutter * $i;
+                }
+            
+                .#{$k}\:py-#{$i}{
+                    padding-top: $gutter * $i;
+                    padding-bottom: $gutter * $i;
+                }
+            
+                .#{$k}\:px-#{$i}{
+                    padding-left: $gutter * $i;
+                    padding-right: $gutter * $i;
+                }
+            
+                @each $kd, $v in $directionList {
+                    .#{$k}\:m#{$kd}-#{$i}{
+                        margin-#{$v}: $gutter*$i;
+                    }
+            
+                    .#{$k}\:p#{$kd}-#{$i}{
+                        padding-#{$v}: $gutter*$i;
+                    }
+                }
+            }
+            
+            .#{$k}\:mx-auto{
+                @include mxAuto;
+            }
+            
+            .#{$k}\:mr-auto{
+                margin-right: auto;
+            }
+            
+            .#{$k}\:ml-auto{
+                margin-left: auto;
+            }
+        }
+    }
+    
+    @else if $startFrom == 'mobile'{
+        @include apply-over($k){
+            @for $i from 0 to 6 {
+                .#{$k}\:m-#{$i}{
+                    margin: $gutter * $i;
+                }
+            
+                .#{$k}\:my-#{$i}{
+                    margin-top: $gutter * $i;
+                    margin-bottom: $gutter * $i;
+                }
+            
+                .#{$k}\:mx-#{$i}{
+                    margin-left: $gutter * $i;
+                    margin-right: $gutter * $i;
+                }
+            
+                .#{$k}\:p-#{$i}{
+                    padding: $gutter * $i;
+                }
+            
+                .#{$k}\:py-#{$i}{
+                    padding-top: $gutter * $i;
+                    padding-bottom: $gutter * $i;
+                }
+            
+                .#{$k}\:px-#{$i}{
+                    padding-left: $gutter * $i;
+                    padding-right: $gutter * $i;
+                }
+            
+                @each $kd, $v in $directionList {
+                    .#{$k}\:m#{$kd}-#{$i}{
+                        margin-#{$v}: $gutter*$i;
+                    }
+            
+                    .#{$k}\:p#{$kd}-#{$i}{
+                        padding-#{$v}: $gutter*$i;
+                    }
+                }
+            }
+            
+            .#{$k}\:mx-auto{
+                @include mxAuto;
+            }
+            
+            .#{$k}\:mr-auto{
+                margin-right: auto;
+            }
+            
+            .#{$k}\:ml-auto{
+                margin-left: auto;
+            }
+        }
+    }
+    
+}

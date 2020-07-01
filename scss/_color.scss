@@ -1,0 +1,9 @@
+//colors
+@each $k, $v in $colors{
+    .color-#{$k}{
+        color: $v;
+    }
+    .bg-#{$k}{
+        background-color: $v;
+    }
+}

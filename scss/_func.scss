@@ -1,0 +1,25 @@
+// func
+@function getColor($k){
+    @return map-get($map: $colors, $key: $k);
+}
+
+@function getFzLevel($lv){
+    @return nth($fzLevel, $lv);
+}
+
+@function getBreakpoints($k){
+    @return map-get($map: $breakpoints, $key: $k);
+}
+
+@function baseLineHeight($lv){
+    @return nth($fzLevel, $lv)*1.1 ;
+}
+
+@function getGutter($n){
+    @return $gutter * $n;
+}
+
+@function addLineHeight($n){
+    $basis: .25rem;
+    @return 1rem * $lineHeight + $basis*$n;
+}
