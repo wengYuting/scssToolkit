@@ -1,9 +1,8 @@
+$tableRwdPoint: getBreakpoints(md);
+
 .info-table{
     @include tableCollapse;
-    th, td{
-        padding: getGutter(1) getGutter(3);
-    }
-    @include apply-under(600px){
+    @include apply-under($tableRwdPoint){
         display: block;
         thead, tbody, tr, th, td{
             display: block;
