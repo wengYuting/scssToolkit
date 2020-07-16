@@ -1,11 +1,3 @@
-//mixin
-@mixin beforeAfterBlock($w,$h, $display:block){
-    content: '';
-    display: $display;
-    width: $w;
-    height: $h;
-}
-
 
 // mediaQuery by breakpoint
 @mixin apply-under($k){
@@ -80,6 +72,17 @@
     flex-grow: 0;
 }
 
+//size
+@mixin sizeSet($w, $h){
+    width: $w;
+    height: $h;
+}
+
+@mixin beforeAfterBlock($w,$h, $display:block, $content:''){
+    content: $content;
+    display: $display;
+    @include sizeSet($w, $h)
+}
 
 //fix rate box
 @mixin fixRateWrap($wPercent, $hPercent, $p:relative) {
@@ -175,7 +178,7 @@
 }
 
 //triangle
-@mixin arrow($direction, $width, $color){
+@mixin triangle($direction, $width, $color){
     height: 0;
     width: 0;
     border-width: $width;
