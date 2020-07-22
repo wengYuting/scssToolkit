@@ -23,19 +23,6 @@ $navTransTime : .5s;
 
 @include apply-under($navRwdPoint){
     .active{
-        .nav-icon-wrap{
-            .nav-icon{
-                background-color: transparent;
-                &::before{
-                    transform: translateY(#{($navIconSize -
-                        $navIconBarH) / 2}) rotate(45deg);
-                }
-                &::after{
-                    transform: translateY(#{($navIconSize -
-                    $navIconBarH) / 2 * (-1)}) rotate(-45deg);
-                }
-            }
-        }
         .nav-list{
             opacity: 1;
             z-index: 1;

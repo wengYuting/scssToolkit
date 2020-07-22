@@ -73,6 +73,11 @@
 }
 
 //size
+@mixin wh100 {
+    width: 100%;
+    height: 100%;
+}
+
 @mixin sizeSet($w, $h){
     width: $w;
     height: $h;

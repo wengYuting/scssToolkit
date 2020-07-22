@@ -1,0 +1,94 @@
+@import "../vueTransition";
+
+.carousel {
+    position: relative;
+    .slider-wrapper {
+        width: 100%;
+        height: 100%;
+        /* margin: 10px; */
+        overflow: hidden;
+        >.slide {
+            position: absolute;
+            top: 0;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+        }
+    }
+    .controller{
+        z-index: 5;
+        font-size: 0;
+        cursor: pointer;
+        &:focus{
+            outline: 0;
+        }
+    }
+    .slider-controller-btn{
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 40px;
+        background-color: transparent;
+        border: none;
+        opacity: 0;
+        transition: opacity .5s;
+        &::after{
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40%;
+            padding-bottom: 40%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+        &:hover{
+            opacity: 1;
+        }
+        $borderStyle:1px solid #dddddd;
+        &.prev{
+            left: 0;
+            &::after{
+                border-left: $borderStyle;
+                border-bottom: $borderStyle;
+                box-shadow: -2px 2px 2px #333333;
+            }
+        }
+        &.next{
+            right: 0;
+            &::after{
+                border-right: $borderStyle;
+                border-top: $borderStyle;
+                box-shadow: 2px -2px 2px #333333;
+            }
+        }
+        
+    }
+    .counter-wrapper {
+        display: flex;
+        position: relative;
+        z-index: 1;
+        @include absoluteCenterX(calc(100% - 20px));
+        .counter {
+            display: block;
+            font-size: 0;
+            width: 20px;
+            height: 5px;
+            border-radius: 10px;
+            border: 0;
+            padding: 0;
+            margin-left: 5px;
+            margin-right: 5px;
+            opacity: .6;
+            box-shadow: 0 0 5px #333333;
+            background-color: #eeeeee;
+            transition: opacity .5s, background-color .5s;
+            &.active{
+                background-color: #ffffff;
+                opacity: 1;
+            }
+        }
+    }
+  }
